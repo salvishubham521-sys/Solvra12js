@@ -130,7 +130,7 @@ export default function Contact() {
                 <h3>Message ready.</h3>
 
                 <p>
-                  The front-end demo has received your message. Connect this
+                  Thamkyou 😊 Our Team has received your message. Connect this
                   form to an email or backend service to make it functional.
                 </p>
 
@@ -143,7 +143,34 @@ export default function Contact() {
                 </button>
               </div>
             )}
-          </form>
+          <form
+  action="https://formspree.io/f/mljgrgrd"
+  method="POST"
+>
+  <input
+    type="text"
+    name="name"
+    placeholder="Your Name"
+    required
+  />
+
+  <input
+    type="email"
+    name="email"
+    placeholder="Your Email"
+    required
+  />
+
+  <textarea
+    name="message"
+    placeholder="Your Message"
+    required
+  />
+
+  <button type="submit">
+    Send Message
+  </button>
+</form>
         </div>
       </section>
     </>
