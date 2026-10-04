@@ -54,7 +54,7 @@ export default function Contact() {
               <div>
                 <Mail size={20} />
               </div>
-              <span>hello@solvra.example</span>
+              <span>salvishubham521@gmail.com</span>
             </div>
 
             <div className="contact-detail">
@@ -80,7 +80,7 @@ export default function Contact() {
                     Your name
                     <input
                       type="text"
-                      placeholder="Enter your name"
+                      placeholder="Enter Your Name"
                       required
                     />
                   </label>
@@ -89,7 +89,7 @@ export default function Contact() {
                     Email
                     <input
                       type="email"
-                      placeholder="you@example.com"
+                      placeholder="youremail@gmail.com"
                       required
                     />
                   </label>
@@ -118,7 +118,7 @@ export default function Contact() {
                 </button>
 
                 <small className="form-note">
-                  Demo form — no message is actually sent yet.
+                 😊 Thanks For your Response we will be there within 15 Minutes.
                 </small>
               </>
             ) : (
