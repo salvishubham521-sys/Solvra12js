@@ -61,7 +61,7 @@ export default function Footer() {
           <span className="eyebrow">READY FOR THE NEXT CHARGE?</span>
           <h3>Let's build smarter charging spaces.</h3>
 
-          <Link to="/contact" className="button button-yellow">
+          <Link to="https://wa.me/918898505849" className="button button-yellow">
             Start a conversation
             <ArrowUpRight size={17} />
           </Link>
