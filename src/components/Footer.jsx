@@ -30,13 +30,13 @@ export default function Footer() {
           </p>
 
           <div className="socials">
-            <a href="#!" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/shubham-salvi-a870452a7?utm_source=share_via&utm_content=profile&utm_medium=member_android" aria-label="LinkedIn">
               <Linkedin size={18} />
             </a>
-            <a href="#!" aria-label="Instagram">
+            <a href="https://www.instagram.com/shubhamsandeepsalvi?stkn=dGRsdGFoNmlmMDVv" aria-label="Instagram">
               <Instagram size={18} />
             </a>
-            <a href="mailto:hello@solvra.example" aria-label="Email">
+            <a href="mailto:salvishubham521@gmail.com" aria-label="Email">
               <Mail size={18} />
             </a>
           </div>
