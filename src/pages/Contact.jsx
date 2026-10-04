@@ -3,10 +3,49 @@ import { Mail, MapPin, MessageSquare, Send, Zap } from "lucide-react";
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    setSubmitted(true);
+
+    if (sending) return;
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    setSending(true);
+
+    try {
+      const response = await fetch("https://formspree.io/f/mljgrgrd", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        form.reset();
+        setSubmitted(true);
+      } else {
+        const data = await response.json().catch(() => null);
+
+        console.error("Formspree error:", data);
+
+        alert(
+          data?.errors?.[0]?.message ||
+          "Something went wrong. Please try again."
+        );
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+
+      alert(
+        "Unable to send your message. Please check your internet connection and try again."
+      );
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -45,9 +84,9 @@ export default function Contact() {
             </h2>
 
             <p>
-              This contact form is currently a front-end demonstration.
-              Connect it to your preferred email or backend service when you
-              are ready to make it live.
+              Have a question about Solvra, our technology concept,
+              collaboration opportunities, or future EV charging solutions?
+              Send us a message and our team will get back to you.
             </p>
 
             <div className="contact-detail">
@@ -80,6 +119,7 @@ export default function Contact() {
                     Your name
                     <input
                       type="text"
+                      name="name"
                       placeholder="Enter Your Name"
                       required
                     />
@@ -89,6 +129,7 @@ export default function Contact() {
                     Email
                     <input
                       type="email"
+                      name="email"
                       placeholder="youremail@gmail.com"
                       required
                     />
@@ -99,6 +140,7 @@ export default function Contact() {
                   Organization
                   <input
                     type="text"
+                    name="organization"
                     placeholder="College / Company / Organization"
                   />
                 </label>
@@ -107,18 +149,24 @@ export default function Contact() {
                   Message
                   <textarea
                     rows="6"
+                    name="message"
                     placeholder="Tell us what you would like to discuss..."
                     required
                   />
                 </label>
 
-                <button type="submit" className="button button-black form-submit">
-                  Send message
-                  <Send size={17} />
+                <button
+                  type="submit"
+                  className="button button-black form-submit"
+                  disabled={sending}
+                >
+                  {sending ? "Sending..." : "Send message"}
+                  {!sending && <Send size={17} />}
                 </button>
 
                 <small className="form-note">
-                 😊 Thanks For your Response we will be there within 15 Minutes.
+                  😊 Thanks for your response. We will get back to you as soon
+                  as possible.
                 </small>
               </>
             ) : (
@@ -127,11 +175,11 @@ export default function Contact() {
                   <Zap size={28} fill="currentColor" />
                 </div>
 
-                <h3>Message ready.</h3>
+                <h3>Message sent!</h3>
 
                 <p>
-                  Thamkyou 😊 Our Team has received your message. Connect this
-                  form to an email or backend service to make it functional.
+                  Thank you 😊 Your message has been successfully received.
+                  Our team will get back to you soon.
                 </p>
 
                 <button
@@ -143,34 +191,7 @@ export default function Contact() {
                 </button>
               </div>
             )}
-          <form
-  action="https://formspree.io/f/mljgrgrd"
-  method="POST"
->
-  <input
-    type="text"
-    name="name"
-    placeholder="Your Name"
-    required
-  />
-
-  <input
-    type="email"
-    name="email"
-    placeholder="Your Email"
-    required
-  />
-
-  <textarea
-    name="message"
-    placeholder="Your Message"
-    required
-  />
-
-  <button type="submit">
-    Send Message
-  </button>
-</form>
+          </form>
         </div>
       </section>
     </>

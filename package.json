@@ -11,6 +11,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@formspree/react": "^3.0.0",
     "framer-motion": "^13.2.0",
     "lucide-react": "^0.468.0",
     "react": "^19.1.0",
